@@ -17,7 +17,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         RGB_HUI, RGB_SAI, RGB_VAI, KC_TRNS,
         RGB_HUD, RGB_SAD, RGB_VAD, KC_TRNS,
 		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-		KC_TRNS, KC_TRNS, RESET, KC_NLC)
+		KC_TRNS, KC_TRNS, RESET, KC_NLCK)
 };
 
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
