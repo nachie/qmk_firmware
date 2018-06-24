@@ -59,4 +59,4 @@ RGBLIGHT_ENABLE ?= yes
 #PS2_USE_USART ?= yes
 #PS2_USE_INT ?= yes
 
-DEFAULT_FOLDER = paladinpad/rev1
+DEFAULT_FOLDER = paladinpad/rev2

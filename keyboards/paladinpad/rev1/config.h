@@ -1,5 +1,5 @@
-#ifndef CONFIG_H
-#define CONFIG_H
+#ifndef REV1_CONFIG_H
+#define REV1_CONFIG_H
 
 #include "config_common.h"
 
