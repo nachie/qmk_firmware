@@ -24,20 +24,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define VENDOR_ID       0xCEEB
 #define PRODUCT_ID      0x1157
 #define DEVICE_VER      0x0100
-#define MANUFACTURER    Keebio
-#define PRODUCT         The Viterbi Keyboard
+#define MANUFACTURER    Nachie
+#define PRODUCT         The Paladin Split Right
 #define DESCRIPTION     Split 5x14 ortholinear keyboard
 
 /* key matrix size */
 // Rows are doubled-up
 #define MATRIX_ROWS 10
-#define MATRIX_COLS 7
+#define MATRIX_COLS 8
 
 // wiring of each half
-#define MATRIX_ROW_PINS { D4, D7, E6, B4, B5 }
-#define MATRIX_COL_PINS { F5, F6, F7, B1, B3, B2, B6 }
-
-#define CATERINA_BOOTLOADER
+#define MATRIX_ROW_PINS { D3, B6, B5, B4, D7 }
+#define MATRIX_COL_PINS { B7, D0, F6, F5, F4, F1, F0, D1 }
 
 /* COL2ROW or ROW2COL */
 #define DIODE_DIRECTION COL2ROW
@@ -62,11 +60,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 )
 
 /* ws2812 RGB LED */
-#define RGB_DI_PIN D3
-#define RGBLIGHT_TIMER
-#define RGBLED_NUM 16    // Number of LEDs
-#define ws2812_PORTREG  PORTD
-#define ws2812_DDRREG   DDRD
+#define RGB_DI_PIN F7
+#ifdef RGB_DI_PIN
+#define RGBLIGHT_ANIMATIONS
+#define RGBLED_NUM 8
+#define RGBLIGHT_HUE_STEP 10
+#define RGBLIGHT_SAT_STEP 17
+#define RGBLIGHT_VAL_STEP 12
+#endif
 
 /*
  * Feature disable options
