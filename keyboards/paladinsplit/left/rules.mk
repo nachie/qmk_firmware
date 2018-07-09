@@ -1,4 +1,4 @@
-BACKLIGHT_ENABLE = no
+SUBPROJECT_LEFT = yes
 
 ifndef QUANTUM_DIR
 	include ../../../Makefile
