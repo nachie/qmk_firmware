@@ -76,9 +76,17 @@ static void keyboard_slave_setup(void) {
 }
 
 bool has_usb(void) {
+#ifdef SPLIT_FORCE_SLAVE
+    return false;
+#else
+  #ifdef SPLIT_FORCE_MASTER
+    return true;
+  #else
    USBCON |= (1 << OTGPADE); //enables VBUS pad
    _delay_us(5);
    return (USBSTA & (1<<VBUS));  //checks state of VBUS
+  #endif
+#endif
 }
 
 void split_keyboard_setup(void) {

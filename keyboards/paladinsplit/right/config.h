@@ -20,6 +20,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "../config.h"
 
+/* Nachie can be remeved once pcb is fixed */
+#define SPLIT_FORCE_MASTER
+
 // wiring of each half
 #define MATRIX_ROW_PINS { D3, B6, B5, B4, D7 }
 #define MATRIX_COL_PINS { B7, D0, F6, F5, F4, F1, F0, D1 }
