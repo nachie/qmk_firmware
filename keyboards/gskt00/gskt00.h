@@ -1,5 +1,5 @@
-#ifndef PALADIN64_H
-#define PALADIN64_H
+#ifndef GSKT00_H
+#define GSKT00_H
 
 #include "quantum.h"
 
