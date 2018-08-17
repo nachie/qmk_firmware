@@ -31,7 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DIODE_DIRECTION COL2ROW
 
 /* ws2812 RGB LED */
-#define RGB_DI_PIN D0
+#define RGB_DI_PIN D4
 #ifdef RGB_DI_PIN
 #define RGBLIGHT_ANIMATIONS
 #define RGBLED_NUM 6
