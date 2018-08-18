@@ -21,9 +21,11 @@ void matrix_setup(void) {
 #else
   #if defined(IS_LEFT_HAND)
     isLeftHand = true;
+    print("LHAND\n");
   #else 
     #if defined(IS_RIGHT_HAND)
       isLeftHand = false;
+      print("RHAND\n");
     #else
       #warn "Must define EE_HANDS or IS_LEFT_HAND/IS_RIGHT_HAND"
     #endif

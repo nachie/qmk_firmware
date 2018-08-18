@@ -132,6 +132,10 @@ uint8_t matrix_cols(void) {
 }
 
 bool has_usb(void) {
+  /* Nachie Remove */
+  if (isLeftHand) {
+      return false;
+  }
   return UDADDR & _BV(ADDEN); // This will return true of a USB connection has been established
 }
 
@@ -143,6 +147,8 @@ void matrix_init(void)
   MCUCR |= (1<<JTD);
 #endif
 
+  debug_enable = true;
+  debug_matrix = true;
     // initialize row and col
 #if (DIODE_DIRECTION == COL2ROW)
     unselect_rows();
@@ -236,10 +242,12 @@ int i2c_transaction(void) {
     #ifdef BACKLIGHT_ENABLE
         if (BACKLIT_DIRTY) {
             err = i2c_master_start(SLAVE_I2C_ADDRESS + I2C_WRITE);
+            print("I1\n");
             if (err) goto i2c_error;
 
             // Backlight location
             err = i2c_master_write(I2C_BACKLIT_START);
+            print("I2\n");
             if (err) goto i2c_error;
 
             // Write backlight
@@ -249,14 +257,17 @@ int i2c_transaction(void) {
         }
     #endif
     err = i2c_master_start(SLAVE_I2C_ADDRESS + I2C_WRITE);
+    print("I3\n");
     if (err) goto i2c_error;
 
     // start of matrix stored at I2C_KEYMAP_START
     err = i2c_master_write(I2C_KEYMAP_START);
+    print("I4\n");
     if (err) goto i2c_error;
 
     // Start read
     err = i2c_master_start(SLAVE_I2C_ADDRESS + I2C_READ);
+    print("I5\n");
     if (err) goto i2c_error;
 
     if (!err) {
@@ -268,6 +279,7 @@ int i2c_transaction(void) {
         i2c_master_stop();
     } else {
 i2c_error: // the cable is disconnceted, or something else went wrong
+        print("IERROR\n");
         i2c_reset_state();
         return err;
     }
@@ -275,16 +287,19 @@ i2c_error: // the cable is disconnceted, or something else went wrong
     #ifdef RGBLIGHT_ENABLE
         if (RGB_DIRTY) {
             err = i2c_master_start(SLAVE_I2C_ADDRESS + I2C_WRITE);
+            print("I6\n");
             if (err) goto i2c_error;
 
             // RGB Location
             err = i2c_master_write(I2C_RGB_START);
+            print("I7\n");
             if (err) goto i2c_error;
 
             uint32_t dword = eeconfig_read_rgblight();
 
             // Write RGB
             err = i2c_master_write_data(&dword, 4);
+            print("I8\n");
             if (err) goto i2c_error;
 
             RGB_DIRTY = false;
@@ -296,6 +311,7 @@ i2c_error: // the cable is disconnceted, or something else went wrong
 
 uint8_t matrix_scan(void)
 {
+    print("MScan\n");
     uint8_t ret = _matrix_scan();
 
     if( i2c_transaction() ) {
@@ -317,6 +333,7 @@ uint8_t matrix_scan(void)
 }
 
 void matrix_slave_scan(void) {
+  print("SScan\n");
   #if defined(RGBLIGHT_ANIMATIONS) & defined(RGBLIGHT_ENABLE)
     rgblight_task();
   #endif
