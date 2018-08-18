@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define IS_RIGHT_HAND
 // wiring of each half
 #define MATRIX_ROW_PINS { D3, B6, B5, B4, D7 }
-#define MATRIX_COL_PINS { B7, D0, F6, F5, F4, F1, F0, D1 }
+#define MATRIX_COL_PINS { B7, D4, F6, F5, F4, F1, F0, D6 }
 
 /* COL2ROW or ROW2COL */
 #define DIODE_DIRECTION COL2ROW
