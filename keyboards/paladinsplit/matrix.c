@@ -274,8 +274,14 @@ int i2c_transaction(void) {
         int i;
         for (i = 0; i < ROWS_PER_HAND-1; ++i) {
             matrix[slaveOffset+i] = i2c_master_read(I2C_ACK);
+            print("ITR:");
+            pbin_reverse16(matrix[slaveOffset+i]);
+            print("\n");
         }
         matrix[slaveOffset+i] = i2c_master_read(I2C_NACK);
+            print("ITR:");
+            pbin_reverse16(matrix[slaveOffset+i]);
+            print("\n----\n");
         i2c_master_stop();
     } else {
 i2c_error: // the cable is disconnceted, or something else went wrong
@@ -313,9 +319,11 @@ uint8_t matrix_scan(void)
 {
     print("MScan\n");
     uint8_t ret = _matrix_scan();
+    matrix_print();
 
     if( i2c_transaction() ) {
 
+        print("-ECP\n");
         error_count++;
 
         if (error_count > ERROR_DISCONNECT_COUNT) {
@@ -326,6 +334,7 @@ uint8_t matrix_scan(void)
             }
         }
     } else {
+        print("+NOE\n");
         error_count = 0;
     }
     matrix_scan_quantum();
@@ -342,7 +351,7 @@ void matrix_slave_scan(void) {
   int offset = (isLeftHand) ? 0 : ROWS_PER_HAND;
 
     for (int i = 0; i < ROWS_PER_HAND; ++i) {
-        i2c_slave_buffer[i] = matrix[offset+i];
+        i2c_slave_buffer[I2C_KEYMAP_START+i] = matrix[offset+i];
     }
 }
 
