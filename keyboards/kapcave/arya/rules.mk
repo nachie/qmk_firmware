@@ -38,6 +38,8 @@ ARMV = 6
 # project specific files
 VPATH += keyboards/kapcave/stm32f072
 SRC =	keyboard.c \
+		arya_encoder.c \
+		arya_oled.c \
       led.c
 
 DFU_ARGS = -d 0483:df11 -a 0 -s 0x08000000:leave
@@ -52,8 +54,10 @@ NKRO_ENABLE = yes	    # USB Nkey Rollover
 CUSTOM_MATRIX = no # Custom matrix file
 # BACKLIGHT_ENABLE = yes # This is broken on 072 for some reason
 RGBLIGHT_ENABLE = yes
+ENCODER_ENABLE = yes
+QWIIC_ENABLE += MICRO_OLED
 
 # RAW_ENABLE = yes
 # DYNAMIC_KEYMAP_ENABLE = yes
 
-LAYOUTS = 60_ansi 60_tsangan_hhkb
+LAYOUTS = 8pad
