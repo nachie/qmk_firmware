@@ -48,6 +48,15 @@
 
 #endif
 
+#define RGBLIGHT_ANIMATIONS
+
+#define WS2812_LED_N 14
+#define RGBLED_NUM WS2812_LED_N
+#define PORT_WS2812     GPIOB
+#define PIN_WS2812      15
+#define WS2812_SPI SPID2
+
+
 /* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
 //#define LOCKING_SUPPORT_ENABLE
 /* Locking resynchronize hack */
