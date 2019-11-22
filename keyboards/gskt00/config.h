@@ -30,3 +30,15 @@
 
 /* Locking resynchronize hack */
 #define LOCKING_RESYNC_ENABLE
+
+#define ENCODERS_PAD_A { D5 }
+#define ENCODERS_PAD_B { D3 }
+
+#define RGB_DI_PIN D0
+#ifdef RGB_DI_PIN
+#define RGBLIGHT_ANIMATIONS
+#define RGBLED_NUM 14
+#define RGBLIGHT_HUE_STEP 10
+#define RGBLIGHT_SAT_STEP 17
+#define RGBLIGHT_VAL_STEP 12
+#endif
